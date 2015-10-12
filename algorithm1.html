@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<body>
+ <button id="rock" onclick="rock()">ROCK</button><br>
+ <button id="edm" onclick="edm()">EDM</button><br>
+ <button id="metal" onclick="metal()">METAL</button><br>
+ <button id="show" onclick="show()">show</button><br>
+ <p id="1"><p>
+ <p id="2"></p>
+ <p id="3"></p>
+ <p id="4"></p>
+ <script>
+ var rock_prob = 1/3;
+ var edm_prob = 1/3;
+ var metal_prob = 1/3;
+ function rock()
+ {
+   var a = rock_prob/3;
+   if((rock_prob+a)>=0.97)
+    { 
+       rock_prob = 0.97;
+       edm_prob = (1-rock_prob)/2;
+       metal_prob =(1-rock_prob)/2; 	   
+    }   
+	else
+	{
+	 rock_prob = rock_prob + a; 
+     edm_prob = edm_prob - a/2;
+     metal_prob = metal_prob - a/2;
+	   /* if(edm_prob<0)
+		{
+	     edm_prob = - edm_prob;
+		  rock_prob = rock_prob + edm_prob/2;
+          metal_prob = metal_prob + edm_prob/2; 		  
+        }
+		if(metal_prob<0)
+		{
+		 metal_prob = -metal_prob;
+         rock_prob = rock_prob-metal_prob/2;
+         edm_prob = edm_prob-metal_prob/2; 		 
+		}*/
+      
+    }	
+ } 
+ function edm()
+ {
+   var b =edm_prob/3;
+    if((edm_prob + b)>=0.97)
+	{
+	 edm_prob = 0.97;
+	 rock_prob = (1-edm_prob)/2;
+	 metal_prob = (1-edm_prob)/2;
+	}
+	else
+  { 
+   edm_prob = edm_prob + b;
+   metal_prob = metal_prob - b/2;
+   rock_prob = rock_prob - b/2;
+     /*if(metal_prob<0)
+	 {
+	   metal_prob = -metal_prob;
+	   edm_prob = edm_prob-metal_prob/2;
+ 	   rock_prob=rock_prob-metal_prob/2; 
+	 }
+	 if(rock_prob<0)
+	 {
+	   rock_prob = -rock_prob;
+	   edm_prob = edm_prob-rock_prob/2;
+	   metal_prob = metal_prob - rock_prob/2;
+	 }*/
+   }
+ }
+ function metal()
+ {
+ var c = metal_prob/3;
+  if((metal_prob + c) >= 0.97)
+  {
+    metal_prob = 0.97;
+	edm_prob = (1-metal_prob)/2;
+	rock_prob = (1-metal_prob)/2;
+  }
+  else
+  {
+   metal_prob = metal_prob + c;
+   rock_prob= rock_prob - c/2;
+   edm_prob = edm_prob - c/2; 
+    /*if(edm_prob<0)
+	{
+	  edm_prob = -edm_prob;
+      metal_prob = metal_prob - edm_prob/2;
+      rock_prob = rock_prob - edm_prob/2;   	  
+	}
+	if(rock_prob<0)
+	{
+	  rock_prob = -rock_prob;
+	  metal_prob = metal_prob-rock_prob/2;
+	  edm_prob = edm_prob-rock_prob/2;
+	}*/
+  }
+ }
+ function show()
+ {
+	 document.getElementById("1").innerHTML = rock_prob;
+	 document.getElementById("2").innerHTML = edm_prob;
+	 document.getElementById("3").innerHTML = metal_prob;
+	 document.getElementById("4").innerHTML = rock_prob+edm_prob+metal_prob;
+ }
+ </script>
+</body>
+</html>
